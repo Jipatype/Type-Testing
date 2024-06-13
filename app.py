@@ -83,11 +83,8 @@ def type(familyName, fileName):
     height = round(size * 120 / 100 + size)
     image = Image.new('RGB', (width, height), bgColor)
     draw = ImageDraw.Draw(image)
-    try:
-        font = ImageFont.truetype(fontPath, size, layout_engine=ImageFont.Layout.RAQM)
-    except:
-        text = "Not Found"
-    _, _, textWidth, textHeight = draw.textbbox(xy=(0, 0), text=text, font_size=size)
+    font = ImageFont.truetype(fontPath, size, layout_engine=ImageFont.Layout.RAQM)
+    _, _, textWidth, textHeight = draw.textbbox(xy=(0, 0), text=text, font=font)
     position = (0, (height - textHeight) // 2)
     draw.text(position, text, fill=color, font=font)
     buffered = BytesIO()
